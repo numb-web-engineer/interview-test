@@ -1,23 +1,31 @@
 import './App.css';
 import { Col, Row ,Layout} from 'antd';
-import {$} from './jquery.shuffleLetters'
 import {dataList} from './data';
-import {useEffect} from 'react'
+import {useEffect,useCallback} from 'react'
+import $ from 'jquery'
+import './jquery.shuffleLetters'
+require('jquery.easing')
 const {Header, Footer, Content} = Layout;
 function App() {
   const sliceNum = 4
   const list = []
-  const contentMouseenterHandle = (e)=>{
+  for(let i = 0;i<dataList.length;i+=sliceNum){
+    list.push(dataList.slice(i,i+sliceNum))
+  }
+  const contentMouseenterHandle =  useCallback((e)=>{
     const label =$(e.currentTarget).children(".label")
     label.each((i,ele)=>{
      const currentEle = $(ele)
+     console.log(ele)
      currentEle.textshuffle({
-       "str":currentEle.text()
+       "str":currentEle.attr('data-text')
      });
     })
-    }
-    const searchMouseEnterHandler = (e,$search,$input)=>{
-      console.log($search,$input)
+    },[])
+
+    const searchMouseEnterHandler = useCallback( (e)=>{
+      const $search = $(e.currentTarget).parent()
+      const $input = $(e.currentTarget).prev()
      $search.css({
           "z-index": 10000
       })
@@ -27,28 +35,56 @@ function App() {
               width: "100%",
               opacity: 1
           }, 300, "easeOutCubic");
-  }
+  },[])
+  const searchMouseLeaveHandler = useCallback((e)=>
+  {   const search = e.currentTarget
+      const $input = $(search).find('input')
+      if ($input.val().length < 1 && !search.isFocus)
+      {
+        $(search).css({
+          "z-index": 0
+      })
+      
+      $input
+          .stop()
+          .animate({
+              width: "0%",
+              opacity: 0
+          }, 300, "easeOutCubic");
+      }
+  },[])
+  const focusinHandler = useCallback((e)=>{
+    e.currentTarget.isFocus = true
+  },[])
+  const focusoutHandler = useCallback((e)=>{
+    e.currentTarget.isFocus = false
+    searchMouseLeaveHandler(e)
+  },[searchMouseLeaveHandler])
   useEffect(()=>{
     const elements = $('.item')
     const $search = $("#search");
-    const $input = $('#search input')
-    $search.on('mouseenter',(e)=>searchMouseEnterHandler(e,$search,$input))
-    elements.on('mouseenter',contentMouseenterHandle)
+    const $button = $("#search .button");
+        $button.on("mouseenter", searchMouseEnterHandler);
+        $button.on("click", searchMouseEnterHandler);
+        $search.on("mouseleave", searchMouseLeaveHandler);
+        $search.on("focusin", focusinHandler);
+        $search.on("focusout", focusoutHandler);
+        elements.on('mouseenter',contentMouseenterHandle)
      return ()=>{
       elements.off()
+      $button.off()
+      $search.off()
      }
-  },[])
-  for(let i = 0;i<dataList.length;i+=sliceNum){
-  list.push(dataList.slice(i,i+sliceNum))
-  }
+  },[focusoutHandler,focusinHandler,searchMouseLeaveHandler,contentMouseenterHandle,searchMouseEnterHandler])
+ 
 
   return (
     <Layout className='app'>
     <Header className='headerBox'>
     <div className="left border-effect" >
       <a  href="/" className='item'>
-        <span className="name label"style={{visibility: 'visible'}}>KASHIWA SATO</span>
-        <span className="title label"  style={{visibility: 'visible'}}>SAMURAI INC. TOKYO</span>
+        <span className="name label" data-text='KASHIWA SATO' style={{visibility: 'visible'}}>KASHIWA SATO</span>
+        <span className="title label" data-text='SAMURAI INC. TOKYO' style={{visibility: 'visible'}}>SAMURAI INC. TOKYO</span>
       </a>
    </div>
    <div className="right">
@@ -56,21 +92,21 @@ function App() {
    <ul >
     <li className="current all" >
       <a className="item" href="/" >
-        <span className="label" style={{visibility:'visible'}}>PROJECT</span>
+        <span className="label" data-text='PROJECT' style={{visibility:'visible'}}>PROJECT</span>
         <div className="effect"></div>
       </a>
       </li>
     <li className="line"></li>
     <li className=" profile" >
         <a className="item" href="/">
-          <span className="label" style={{visibility:'visible'}}>PROFILE</span>
+          <span className="label" data-text='PROFILE' style={{visibility:'visible'}}>PROFILE</span>
           <div className="effect"></div>
         </a>
     </li>
     <li className="line"></li>
     <li className=" contact">
           <a className="item" href="/">
-            <span className="label" style={{visibility:'visible'}}>CONTACT</span>
+            <span className="label" data-text='CONTACT'  style={{visibility:'visible'}}>CONTACT</span>
             <div className="effect" ></div>
           </a>
     </li>
@@ -79,21 +115,21 @@ function App() {
     <ul >
       <li >
         <a href="/" className="item en" >
-          <span className="label" style={{visibility:'visible'}}>ENGLISH</span>
+          <span className="label" data-text='ENGLISH'  style={{visibility:'visible'}}>ENGLISH</span>
           <div className="effect" ></div>
         </a>
       </li>
       <li className="line"></li>
       <li>
         <a href="/" className="item ja" >
-          <span className="label" style={{visibility:'visible'}}>JAPANESE</span>
+          <span className="label" data-text='JAPANESE'  style={{visibility:'visible'}}>JAPANESE</span>
           <div className="effect" ></div>
         </a>
       </li>
       <li className="line"></li>
       <li >
         <a href="/" className="item current cs">
-          <span className="label" style={{visibility:'visible'}} >CHINESE</span>
+          <span className="label" data-text='CHINESE'  style={{visibility:'visible'}} >CHINESE</span>
           <div className="effect"></div>
         </a>
       </li>
@@ -116,7 +152,7 @@ function App() {
                <p className='imgBox'>
                 <img src={require(`./${item1.imgUrl}`)} alt={item1.title} style={{width:'100%',mixBlendMode: 'multiply' }}/>
                </p>
-                <p className='label'>{item1.title}</p>
+                <p className='label' data-text={item1.title}>{item1.title}</p>
                 <ul className='context'>
                   <li>{item1.context.credit1}</li>
                   <li>{item1.context.credit2}</li>

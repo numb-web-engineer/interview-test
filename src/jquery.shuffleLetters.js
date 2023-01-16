@@ -1,10 +1,10 @@
-import $ from 'jquery'
+const $ = window.$
 $.fn.textshuffle = function(arg)
 {
 	var defaults =
 	{
 		str : "",
-		waitChar : "-",
+		waitChar : "",
 		charSpeed : 5,
 		moveFix : 1,
 		moveRange : 10,
@@ -40,7 +40,7 @@ $.fn.textshuffle = function(arg)
 
 			for (var i = fixLength; i <= textCount; i++)
 			{
-				if (randomList[i] != 0 && randomList[i] != null)
+				if (randomList[i] !== 0 && randomList[i] !== null)
 				{
 					end_charMotion = false;
 					var temp_listnum = randomList[i];
@@ -149,6 +149,3 @@ $.fn.textshuffle = function(arg)
 		}
 	});
 };
-
-
-export {$}

@@ -123,6 +123,7 @@
    font-family: inherit;
     font-size: inherit;
     font-weight: inherit;
+    outline: none
 }
 #search .button {
    display: inline;
@@ -190,6 +191,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    height: 24px;
     -webkit-tap-highlight-color: transparent;
     font-family: "Helvetica Neue LT W05_55 Roman", Helvetica, Arial, Verdana, "Noto Sans Japanese", "Noto Sans SC", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
    }
@@ -198,15 +200,24 @@
     padding: 0px;
     margin: 0px;
     position: relative;
-   }
-   .context li{
+    display: inline-block;
     font-size: 12px;
     line-height: 1.7em;
+    height: 110px;
     white-space: initial !important;
     overflow: hidden;
     color: #999;
     font-family: "HelveticaNeueW01-45Ligh", Helvetica, Arial, Verdana, "Noto Sans Japanese", "Noto Sans SC", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
     letter-spacing: 0.05em;
+    position: relative;
+   }
+   .context li{
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1;
+      margin-bottom: 0;
+      line-height: 1.6em;
+      overflow: hidden;
    }
    .more{
     color: #000;
