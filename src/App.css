@@ -1,38 +1,221 @@
-.App {
-  text-align: center;
-}
+   .app{
+    background-color: #ffffff;
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+   }
+   .headerBox{
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 10px !important;
+    margin-top: 70px;
+    -webkit-tap-highlight-color: transparent;
+    font-family: "Helvetica Neue LT W05_55 Roman", Helvetica, Arial, Verdana, "Noto Sans Japanese", "Noto Sans SC", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+    font-size: 12px;
+    line-height: 1em !important;
+    letter-spacing: 0.1em;
+    padding-inline: 0 !important;
+    color: not specified;
+    background: #ffffff !important;
+   }
+   .headerBox .right {
+      display: inline;
+      float: right;
+      position: relative;
+      margin-right: 80px;
+      margin-top: -1px;
+      right: -10px;
+   }
+   .headerBox .right .side-menu {
+      margin-right: 60px;
+      display: block;
+    width: auto;
+    float: left;
+    position: relative;
+    z-index: 10;
+    margin-left: 80px;
+    margin-bottom: 50px;
   }
+  
+  .headerBox .right .side-menu ul {
+   display: inline-block;
+   list-style: none;
+   font-family: "Helvetica Neue LT W05_55 Roman", Helvetica, Arial, Verdana, "Noto Sans Japanese", "Noto Sans SC", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+   font-size: 12px;
+   line-height: 1em;
+   letter-spacing: 0.1em;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.headerBox .right .side-menu li {
+   display: inline;
+   float: left;
+   margin-bottom: 15px;
 }
-
-.App-link {
-  color: #61dafb;
+.headerBox .right .side-menu li.all a {
+   width: 63px;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.headerBox  .right .side-menu li.current a {
+   color: #000;
+}
+.headerBox .right .side-menu li a {
+   position: relative;
+   display: inline-block;
+   color: #999;
+   margin-right: 8px;
+   overflow: hidden;
+   white-space: nowrap;
+}
+.headerBox li.line {
+   margin-right: 9px;
+   width: 1px;
+   background-color: #999;
+   height: 12px;
+}
+.headerBox .right .side-menu li:last-child {
+   margin-right: 37px;
+}
+.headerBox .right .lang-switch {
+   display: inline-block;
+   font-family: "Helvetica Neue LT W05_55 Roman", Helvetica, Arial, Verdana, "Noto Sans Japanese", "Noto Sans SC", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+   font-size: 12px;
+   line-height: 1em;
+   letter-spacing: 0.1em;
+}
+.headerBox .right .lang-switch ul li:last-child {
+   margin-right: 0;
+}
+.headerBox .right .side-menu li.profile a {
+   width: 58px;
+}
+.headerBox .right .side-menu li.contact a {
+   width: 65px;
+}
+.headerBox .right .lang-switch ul li a.en {
+   width: 59px;
+}
+.headerBox .right .lang-switch ul li a.ja {
+   width: 69px;
+}
+.headerBox .right .lang-switch ul li a.cs {
+   width: 59px;
+}
+#search {
+   display: inline;
+   float: left;
+   position: relative;
+   width: 300px;
+   position: absolute;
+   right: 0;
+   z-index: 0;
+}
+#search input {
+   display: inline;
+   float: right;
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   box-sizing: border-box;
+   width: 0%;
+   height: 30px;
+   padding: 10px;
+   padding-right: 30px;
+   border: 1px solid #ccc;
+   opacity: 0;
+   letter-spacing: 0.05em;
+   font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+}
+#search .button {
+   display: inline;
+   float: left;
+   position: absolute;
+   right: 0;
+   top: 2px;
+   box-sizing: border-box;
+   width: 30px;
+   height: 30px;
+   background-image: url(./images/search.svg);
+   background-size: 12px 12px;
+   background-position: 8px 8px;
+   background-repeat: no-repeat;
+}
+.side-menu ul li {
+   margin-bottom: 15px;
+}
+   a:link, a:visited {
+      color: #000;
+   }
+   .headerBox .left a {
+      position: absolute;
+      display: block;
+      left: 80px;
+      width: 430px;
+      margin-top: -1px;
+      white-space: nowrap;
+      overflow: hidden;}
+      .headerBox .left .title {
+         margin-left: 20px;
+         color: #999;
+     }
+     .headerBox .left.border-effect {
+      border-left-width: 34px;
   }
-  to {
-    transform: rotate(360deg);
-  }
-}
+  .headerBox .left {
+   display: inline;
+   float: left;
+   box-sizing: border-box;
+   border-left: 0px solid #000;
+   height: 10px;
+   line-height: 1em;
+   border-left-width: 0px;
+   -webkit-transition: border-left-width 0.15s;
+   transition: border-left-width 0.15s;}
+   .container{
+    width: 100%;
+    margin-bottom: 23px;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+   }
+   .content{
+    margin: 70px 80px;
+   }
+   p.imgBox{
+    background-color: #f6f6f6;
+    margin: 0;
+    padding: 0;
+   }
+   p.label{
+    margin: 23px 0 14px;
+    line-height: 1.6em;
+    font-size: 15px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
+    font-family: "Helvetica Neue LT W05_55 Roman", Helvetica, Arial, Verdana, "Noto Sans Japanese", "Noto Sans SC", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+   }
+   .context{
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+    position: relative;
+   }
+   .context li{
+    font-size: 12px;
+    line-height: 1.7em;
+    white-space: initial !important;
+    overflow: hidden;
+    color: #999;
+    font-family: "HelveticaNeueW01-45Ligh", Helvetica, Arial, Verdana, "Noto Sans Japanese", "Noto Sans SC", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+    letter-spacing: 0.05em;
+   }
+   .more{
+    color: #000;
+    opacity: 0.8;
+    letter-spacing: 0.1em;
+    font-size: 12px;
+    font-family: "HelveticaNeueW01-45Ligh", Helvetica, Arial, Verdana, "Noto Sans Japanese", "Noto Sans SC", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+   }
+   div.item{
+    cursor: pointer;
+   }
+
