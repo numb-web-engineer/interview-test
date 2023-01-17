@@ -3,8 +3,9 @@ import { Col, Row ,Layout} from 'antd';
 import {dataList} from './data';
 import {useEffect,useCallback} from 'react'
 import $ from 'jquery'
-import './jquery.shuffleLetters'
+//import './jquery.shuffleLetters'
 require('jquery.easing')
+require('./jquery.shuffleLetters')
 const {Header, Footer, Content} = Layout;
 function App() {
   const sliceNum = 4
