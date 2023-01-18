@@ -17,7 +17,6 @@ function App() {
     const label =$(e.currentTarget).children(".label")
     label.each((i,ele)=>{
      const currentEle = $(ele)
-     console.log(ele)
      currentEle.textshuffle({
        "str":currentEle.attr('data-text')
      });
